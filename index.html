@@ -200,11 +200,10 @@
       animation-delay: 900ms;
     }
 
-    .profile-card {
-      min-height: 96px;
+    .profile-card,
+    .app-card {
       justify-content: space-between;
       gap: 18px;
-      padding: 18px;
       text-align: left;
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.035)),
@@ -217,7 +216,18 @@
       -webkit-backdrop-filter: blur(18px);
     }
 
-    .profile-card::before {
+    .profile-card {
+      min-height: 96px;
+      padding: 18px;
+    }
+
+    .app-card {
+      min-height: 78px;
+      padding: 12px 14px 12px 18px;
+    }
+
+    .profile-card::before,
+    .app-card::before {
       content: "";
       position: absolute;
       inset: 0;
@@ -226,6 +236,14 @@
         linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent 44%);
       pointer-events: none;
       opacity: 0.9;
+      z-index: 0;
+      filter: none;
+      transform: none;
+      transition: none;
+    }
+
+    .app-card::after {
+      content: none;
     }
 
     .profile-info {
@@ -344,12 +362,10 @@
       letter-spacing: 0;
     }
 
-    .profile-avatar {
+    .profile-avatar,
+    .app-icon {
       position: relative;
       z-index: 2;
-      width: 60px;
-      height: 60px;
-      flex: 0 0 60px;
       border-radius: 50%;
       overflow: hidden;
       background: #111820;
@@ -357,7 +373,19 @@
       box-shadow:
         0 0 0 1px rgba(40, 199, 255, 0.34),
         0 10px 24px rgba(0, 0, 0, 0.36);
+    }
+
+    .profile-avatar {
+      width: 60px;
+      height: 60px;
+      flex: 0 0 60px;
       animation: avatarPop 650ms cubic-bezier(0.16, 1, 0.3, 1) 920ms both;
+    }
+
+    .app-icon {
+      width: 50px;
+      height: 50px;
+      flex: 0 0 50px;
     }
 
     .profile-avatar img,
@@ -367,74 +395,6 @@
       display: block;
       object-fit: cover;
       object-position: center;
-    }
-
-    .app-card {
-      min-height: 70px;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 8px 10px 8px 20px;
-      background: rgba(12, 22, 30, 0.62);
-      border: 1px solid rgba(88, 219, 255, 0.48);
-      box-shadow:
-        0 14px 30px rgba(0, 0, 0, 0.32),
-        0 0 18px rgba(40, 199, 255, 0.13),
-        inset 0 1px 0 rgba(255, 255, 255, 0.13);
-      backdrop-filter: blur(16px) saturate(1.12);
-      -webkit-backdrop-filter: blur(16px) saturate(1.12);
-    }
-
-    .app-card::before {
-      content: "";
-      position: absolute;
-      inset: -34px;
-      background: var(--app-bg) center / cover no-repeat;
-      filter: blur(14px) saturate(1.18);
-      opacity: 0.66;
-      transform: scale(1.42);
-      transition: opacity 220ms ease, transform 220ms ease;
-      z-index: 0;
-    }
-
-    .app-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.025) 36%, transparent 64%),
-        linear-gradient(90deg, rgba(4, 8, 13, 0.82), rgba(4, 9, 14, 0.58) 56%, rgba(4, 8, 13, 0.72)),
-        rgba(4, 8, 13, 0.26);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .app-card span {
-      position: relative;
-      z-index: 2;
-    }
-
-    .app-title {
-      color: #ffffff;
-      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.78);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .app-icon {
-      position: relative;
-      z-index: 2;
-      width: 50px;
-      height: 50px;
-      flex: 0 0 50px;
-      border-radius: 50%;
-      overflow: hidden;
-      background: #111820;
-      border: 2px solid rgba(255, 255, 255, 0.9);
-      box-shadow:
-        0 0 0 1px rgba(40, 199, 255, 0.48),
-        0 0 14px rgba(40, 199, 255, 0.24),
-        0 8px 18px rgba(0, 0, 0, 0.34);
     }
 
     .hub-card {
@@ -457,28 +417,14 @@
     }
 
     .profile-card:hover,
-    .profile-card:focus-visible {
+    .profile-card:focus-visible,
+    .app-card:hover,
+    .app-card:focus-visible {
       transform: translateY(-2px);
       border-color: rgba(255, 255, 255, 0.23);
       box-shadow:
         0 24px 54px rgba(0, 0, 0, 0.42),
         inset 0 1px 0 rgba(255, 255, 255, 0.19);
-    }
-
-    .app-card:hover,
-    .app-card:focus-visible {
-      transform: translateY(-2px) scale(1.01);
-      border-color: rgba(88, 219, 255, 0.7);
-      box-shadow:
-        0 18px 38px rgba(0, 0, 0, 0.38),
-        0 0 22px rgba(40, 199, 255, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.17);
-    }
-
-    .app-card:hover::before,
-    .app-card:focus-visible::before {
-      opacity: 0.78;
-      transform: scale(1.48);
     }
 
     .button:active,
@@ -605,6 +551,11 @@
         padding: 16px;
       }
 
+      .app-card {
+        min-height: 76px;
+        padding: 12px 12px 12px 16px;
+      }
+
       .profile-title {
         font-size: 19px;
       }
@@ -615,15 +566,10 @@
         flex-basis: 58px;
       }
 
-      .app-card {
-        min-height: 72px;
-        padding: 8px 9px 8px 18px;
-      }
-
       .app-icon {
-        width: 48px;
-        height: 48px;
-        flex-basis: 48px;
+        width: 50px;
+        height: 50px;
+        flex-basis: 50px;
       }
     }
 
@@ -645,21 +591,21 @@
         gap: 14px;
       }
 
+      .app-card {
+        min-height: 74px;
+        gap: 12px;
+      }
+
       .profile-avatar {
         width: 56px;
         height: 56px;
         flex-basis: 56px;
       }
 
-      .app-card {
-        min-height: 72px;
-        gap: 12px;
-      }
-
       .app-icon {
-        width: 46px;
-        height: 46px;
-        flex-basis: 46px;
+        width: 48px;
+        height: 48px;
+        flex-basis: 48px;
       }
     }
 
@@ -688,8 +634,8 @@
         <a class="button profile-card" href="https://t.me/platyxchannel" target="_blank" rel="noopener noreferrer">
           <span class="profile-info">
             <span class="profile-meta">
-              <span class="profile-title">Channel Platyx</span>
-              <span class="profile-badge">Main</span>
+              <span class="profile-title">Platyx</span>
+              <span class="profile-badge">Channel</span>
             </span>
             <span class="profile-subtitle">Official channel</span>
           </span>
@@ -709,7 +655,7 @@
             <span class="app-status" data-status="Online"></span>
           </span>
           <span class="app-icon" aria-hidden="true">
-            <img src="https://i.postimg.cc/sxKnp1Jw/3df8b850-7ed2-48f8-a57b-b3bf57d3b89c.png" alt="" />
+            <img src="https://i.postimg.cc/4xS2065R/352a588c-1394-4c6a-ac54-cd0f6929f43e.png" alt="" />
           </span>
         </a>
 

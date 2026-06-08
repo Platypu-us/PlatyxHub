@@ -115,19 +115,42 @@
 
     .divider {
       width: 100%;
-      height: 1px;
-      margin: 0 0 24px;
+      height: 2px;
+      margin: 0 auto 24px;
+      border-radius: 999px;
       background: linear-gradient(
         90deg,
         transparent 0%,
-        rgba(40, 199, 255, 0.12) 14%,
-        rgba(40, 199, 255, 0.8) 50%,
-        rgba(40, 199, 255, 0.12) 86%,
+        rgba(40, 199, 255, 0.18) 10%,
+        rgba(40, 199, 255, 1) 50%,
+        rgba(40, 199, 255, 0.18) 90%,
         transparent 100%
       );
-      box-shadow: 0 0 14px rgba(40, 199, 255, 0.24);
+      box-shadow:
+        0 0 18px rgba(40, 199, 255, 0.44),
+        0 0 34px rgba(40, 199, 255, 0.18);
+      opacity: 0.95;
       transform-origin: center;
       animation: dividerReveal 700ms ease 420ms both;
+    }
+
+    .button-divider {
+      width: 56%;
+      height: 1px;
+      margin: 2px auto;
+      border-radius: 999px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(40, 199, 255, 0.12) 12%,
+        rgba(40, 199, 255, 0.7) 50%,
+        rgba(40, 199, 255, 0.12) 88%,
+        transparent 100%
+      );
+      box-shadow: 0 0 10px rgba(40, 199, 255, 0.18);
+      opacity: 0.55;
+      transform-origin: center;
+      animation: dividerReveal 700ms ease both;
     }
 
     .buttons {
@@ -165,15 +188,15 @@
         background-color 220ms ease;
     }
 
-    .button:nth-child(1) {
+    .button:nth-of-type(1) {
       animation-delay: 620ms;
     }
 
-    .button:nth-child(2) {
+    .button:nth-of-type(2) {
       animation-delay: 760ms;
     }
 
-    .button:nth-child(3) {
+    .button:nth-of-type(3) {
       animation-delay: 900ms;
     }
 
@@ -218,11 +241,58 @@
       z-index: 2;
       flex: 1;
       min-width: 0;
+      display: grid;
+      gap: 6px;
+      text-align: left;
+    }
+
+    .app-topline {
       display: flex;
       align-items: center;
       gap: 8px;
-      text-align: left;
+      min-width: 0;
       white-space: nowrap;
+    }
+
+    .app-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: fit-content;
+      font-size: 11.5px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      text-transform: lowercase;
+      color: rgba(255, 255, 255, 0.54);
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.08);
+    }
+
+    .app-status::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      flex: 0 0 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow:
+        0 0 0 3px rgba(34, 197, 94, 0.12),
+        0 0 12px rgba(34, 197, 94, 0.58);
+    }
+
+    .app-status::after {
+      content: attr(data-status);
+    }
+
+    .app-status[data-status="Offline"]::before {
+      background: #ef4444;
+      box-shadow:
+        0 0 0 3px rgba(239, 68, 68, 0.12),
+        0 0 12px rgba(239, 68, 68, 0.58);
+    }
+
+    .app-status[data-status="Offline"] {
+      color: rgba(255, 255, 255, 0.48);
     }
 
     .profile-meta {
@@ -515,7 +585,12 @@
       }
 
       .divider {
+        height: 2px;
         margin-bottom: 20px;
+      }
+
+      .button-divider {
+        width: 50%;
       }
 
       .button {
@@ -541,8 +616,8 @@
       }
 
       .app-card {
-        min-height: 66px;
-        padding: 7px 9px 7px 18px;
+        min-height: 72px;
+        padding: 8px 9px 8px 18px;
       }
 
       .app-icon {
@@ -577,7 +652,7 @@
       }
 
       .app-card {
-        min-height: 66px;
+        min-height: 72px;
         gap: 12px;
       }
 
@@ -623,20 +698,30 @@
           </span>
         </a>
 
+        <div class="button-divider" aria-hidden="true"></div>
+
         <a class="button app-card hub-card" href="https://t.me/PlatyxHub_bot" target="_blank" rel="noopener noreferrer">
           <span class="app-info">
-            <span class="app-title">Platyx Hub</span>
-            <span class="app-badge">Bot</span>
+            <span class="app-topline">
+              <span class="app-title">Platyx Hub</span>
+              <span class="app-badge">Bot</span>
+            </span>
+            <span class="app-status" data-status="Online"></span>
           </span>
           <span class="app-icon" aria-hidden="true">
             <img src="https://i.postimg.cc/sxKnp1Jw/3df8b850-7ed2-48f8-a57b-b3bf57d3b89c.png" alt="" />
           </span>
         </a>
 
+        <div class="button-divider" aria-hidden="true"></div>
+
         <a class="button app-card converter-card" href="https://t.me/JustConvBot" target="_blank" rel="noopener noreferrer">
           <span class="app-info">
-            <span class="app-title">Just Converter</span>
-            <span class="app-badge">Bot</span>
+            <span class="app-topline">
+              <span class="app-title">Just Converter</span>
+              <span class="app-badge">Bot</span>
+            </span>
+            <span class="app-status" data-status="Online"></span>
           </span>
           <span class="app-icon" aria-hidden="true">
             <img src="https://i.postimg.cc/TY01BbQ6/photo-2026-06-03-19-26-56.jpg" alt="" />
